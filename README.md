@@ -1,1 +1,3 @@
-# A102 프로젝트
+# Carebot User API Server
+
+User API Server for Carebot Platform
