@@ -159,24 +159,24 @@ async def create_family(family_data: Family, request_id: str = Depends(Database.
         family_name=family_data.family_name
     )
 
-    # Settings 값 생성
-    settings_data: SettingsTable = SettingsTable(family_id=new_id)
-    settings_result: bool = Database.create_settings(settings_data)
-
-    if not settings_result:
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail={
-                "type": "server error",
-                "message": "Failed to create new settings",
-                "input": jsonable_encoder(family_data)
-            }
-        )
-
     # 새로운 가족 생성
     result: bool = Database.create_family(new_family)
 
     if result:
+        # Settings 값 생성
+        settings_data: SettingsTable = SettingsTable(family_id=new_id)
+        settings_result: bool = Database.create_settings(settings_data)
+
+        if not settings_result:
+            raise HTTPException(
+                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                detail={
+                    "type": "server error",
+                    "message": "Failed to create new settings",
+                    "input": jsonable_encoder(family_data)
+                }
+            )
+
         return {
             "message": "New family created successfully",
             "result": {
@@ -365,6 +365,39 @@ async def get_family(family_id: str, request_id: str = Depends(Database.check_cu
                 "type": "not found",
                 "message": "Family not found",
                 "input": {"family_id": family_id}
+            }
+        )
+
+@router.get("/name/{family_id}", status_code=status.HTTP_200_OK)
+async def get_name_family(family_id: str, request_id: str = Depends(Database.check_current_user)):
+    # 계정이 있는 사용자가 가족의 이름을 조회해볼 수 있음
+    request_data: dict = Database.get_one_account(request_id);
+
+    if not request_data:
+        logger.warning(f"You do not have permission: {request_id}")
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail={
+                "type": "can not access",
+                "message": "You do not have permission"
+            }
+        )
+
+    # 가족의 정보를 불러오기
+    family_data: dict = Database.get_one_family(family_id)
+
+    if family_data:
+        return {
+            "message": "Family retrieved successfully",
+            "result": {"family_name": family_data["family_name"] if family_data["family_name"] else None}
+        }
+    else:
+        logger.warning(f"Family not found: {family_id}")
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail={
+                "type": "not found",
+                "message": "Family not found"
             }
         )
 

@@ -5,16 +5,16 @@ FROM python:3.11.9-alpine
 WORKDIR /app
 
 # Set Requirements
-COPY requirements.txt /app/requirements.txt
+COPY ./requirements.txt /app/requirements.txt
 RUN pip install --no-cache-dir --upgrade -r requirements.txt
 
 # Copy Code
-COPY main.py /app/main.py
-COPY Database /app/Database
-COPY Endpoint /app/Endpoint
-COPY External /app/External
-COPY Routers /app/Routers
-COPY Utilities /app/Utilities
+COPY ./main.py /app/main.py
+COPY ./Database /app/Database
+COPY ./Endpoint /app/Endpoint
+COPY ./External /app/External
+COPY ./Routers /app/Routers
+COPY ./Utilities /app/Utilities
 
 # Set Time
 RUN apk add --no-cache chrony
