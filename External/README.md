@@ -10,6 +10,8 @@ Carebot Project는 독거노인을 위한 스마트 생활 도우미 서비스�
 
 ### 기술
 
+<img src="https://github.com/user-attachments/assets/f8f3d1ec-cfc2-4a02-b7cc-7ef840d7c3c6"  width="100" height="100" alt="Python"/>
+
 | **분야** | **사용한 기술** |
 | --- | --- |
 | Program Language | **Python** 3.11.9 |
