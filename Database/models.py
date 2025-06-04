@@ -140,7 +140,7 @@ class LoginSessionsTable(Base):
                 f"<LoginSession(xid='{self.xid}', " +
                 f"user_id='{self.user_id}', " +
                 f"last_active='{self.last_active}', " +
-                f"is_main_user='{self.is_main_user}, " +
+                f"is_main_user='{self.is_main_user}', " +
                 f"is_remember='{self.is_remember}')>"
                 )
 
@@ -330,7 +330,7 @@ class NotificationsTable(Base):
                 f"notification_grade='{self.notification_grade}', " +
                 f"descriptions='{self.descriptions}', " +
                 f"message_sn='{self.message_sn}', " +
-                f"is_read='{self.is_read}," +
+                f"is_read='{self.is_read}', " +
                 f"image_url='{self.image_url}')>"
         )
 
