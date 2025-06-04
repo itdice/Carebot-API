@@ -163,7 +163,7 @@ Carebot과 User Platform에 정보와 기능을 제공하기 위해 API Server�
 | 3 | **`GET`** | `/notify/all/:family-id?start&end&order` | 모든 알림 가져오기 | [바로가기](https://www.notion.so/1990abcedc5880ebb005ce847d69a088?pvs=21) |
 | 4 | **`PATCH`** | `/notify/read/:index` | 알림 읽음 처리하기 | [바로가기](https://www.notion.so/1990abcedc58801d9784f89b14db8cf3?pvs=21) |
 | 5 | **`PATCH`** | `/notify/read-many` | 다량의 알림 읽음 처리하기 | [바로가기](https://www.notion.so/19e0abcedc5880839e36df5023d47e5d?pvs=21) |
-| 6 | **`DEL`** | `/notify/:index` | 알림 삭제하기 | [바로가기](https://www.notion.so/1990abcedc588044bde4f896f4797c1f?pvs=21) |
+| 6 | **`DEL`** | `/notify/delete/:notification-id` | 알림 삭제하기 | [바로가기](https://www.notion.so/1990abcedc588044bde4f896f4797c1f?pvs=21) |
 
 > **`/tools` - 부가 기능 부분**
 > 
